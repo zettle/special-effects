@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>md风格的按钮</title>
+<style>
+button {
+    position: relative;
+    background-color: #4a90e2;
+    color: #fff;
+    width: 200px;
+    height: 60px;
+    border: 0 none;
+    outline: none;
+}
+.md-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .4);
+    min-width: 20px;
+    min-height: 20px;
+    animation: ripple 2s;
+}
+@keyframes ripple {
+    0% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+    100% {
+        transform: scale(20);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+<body>
+
+<button type="button" id="btn">点击我出现波澜</button>
+
+<script>
+let oBtn = document.querySelector('#btn');
+oBtn.addEventListener('click', (e) => {
+    let oTarget = e.currentTarget;
+    let ripple = document.createElement('div');
+    ripple.classList.add('md-ripple');
+    // 以点击点为圆点，按钮高度为半径创建DOM
+    let x = e.pageX - oTarget.offsetLeft; // x=点击点到按钮左边框的距离
+    let y = e.pageY - oTarget.offsetTop;
+    ripple.style.height = btn.offsetHeight + 'px'; // 取按钮的高度
+    ripple.style.width = btn.offsetHeight + 'px'; // 正方形
+    ripple.style.left = x - btn.offsetHeight / 2 + 'px'; // x-ripple的高度的一半 = ripple的中心点
+    ripple.style.top = y - btn.offsetHeight / 2 + 'px';
+    btn.appendChild(ripple);
+
+    // 添加className，里面是animation实现
+    ripple.classList.add('md-ripple-effect');
+
+    // 2s后移除
+    setTimeout(() => {
+        btn.removeChild(ripple)
+    }, 2000);
+}, false);
+</script>
+</body>
+</html>

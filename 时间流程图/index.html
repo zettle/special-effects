@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>时间流程图</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+}
+.flow-box {
+    margin: 100px;
+    width: 375px;
+}
+.flow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #FFF;
+}
+.flow-dot {
+    position: relative;
+    left: 0;
+    top: 0;
+
+    width: 16px;
+    height: 16px;
+    border-radius: 7px;
+    box-sizing: border-box;
+
+    background-color: #E2E2E2;
+}
+.flow-dot.done {
+    background-color: #09bb07;
+}
+.flow-dot .flow-dot-num {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 16px;
+    text-align: center;
+    font-size: 12px;
+}
+.flow-dot .flow-dot-title {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 14px;
+    color: #333;
+    white-space: nowrap;
+}
+
+
+/*进度线，默认是灰色，激活分全激活半激活2种*/
+.flow-line {
+    position: relative;
+    left: 0;
+    top: 0;
+    flex: 1;
+    height: 3px;
+    background-color: #E2E2E2;
+}
+.flow-line .flow-line-process {
+    width: 100%;
+    height: 100%;
+}
+/* 进度条-进行中的文字提示 */
+.flow-line .flow-line-title {
+    position: absolute;
+    left: 50%;
+    bottom: 11px;
+    transform: translate(-50%, 0);
+
+    height: 16px;
+    padding: 0 6px;
+
+    line-height: 16px;
+    background-color: #09bb07;
+    font-size: 12px;
+    color: #FFF;
+    white-space: nowrap;
+
+    border-radius: 2px;
+}
+/* 倒三角形代码 */
+.flow-line .flow-line-title:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -10px; /* 值为边框高的2倍 */
+    transform: translate(-50%, 0);
+
+    width: 0;
+    height: 0;
+
+    border-color: #09bb07 transparent transparent transparent;
+    border-style: solid;
+    border-width: 5px 3px;
+}
+.flow-line.done .flow-line-process {
+    background-color: #09bb07;
+}
+.flow-line.half .flow-line-process {
+    width: 50%;
+    background-color: #09bb07;
+}
+</style>
+</head>
+<body>
+    <h3>实现原理：</h3>
+    <ul>
+        <li>1、外层用display:flex，进度圆宽度固定，剩下的进度条都是flex:1</li>
+        <li>2、进度圆里面有2级，文字和步骤</li>
+    </ul>
+    <div class="flow-box">
+        <div class="flow">
+            <!-- 点 -->
+            <div class="flow-dot done">
+                <span class="flow-dot-num">1</span>
+                <span class="flow-dot-title">第1步-资料</span>
+            </div>
+            <!-- 线 -->
+            <div class="flow-line done">
+                <div class="flow-line-process"></div>
+                <!-- <div class="flow-line-title"></div> -->
+            </div>
+            <!-- 点 -->
+            <div class="flow-dot done">
+                <span class="flow-dot-num">2</span>
+                <span class="flow-dot-title">第2步-人脸识别</span>
+            </div>
+            <!-- 线 -->
+            <div class="flow-line half">
+                <div class="flow-line-process"></div>
+                <div class="flow-line-title">进行中</div>
+            </div>
+            <!-- 点 -->
+            <div class="flow-dot">
+                <span class="flow-dot-num">3</span>
+                <span class="flow-dot-title">第3步-提交</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

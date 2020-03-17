@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+}
+.box {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #a6adc2;
+    border-radius: 2px;
+    margin-left:  50px;
+    margin-top:  50px;
+    cursor: pointer;
+}
+.box:after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 11px;
+    border: 2px solid red;
+    border-left: 0;
+    border-top: 0;
+    transform: rotate(45deg) scaleY(0);
+    transition: transform .15s cubic-bezier(.71,-.46,.88,.6);
+    transform-origin: center;
+    box-sizing: content-box;
+}
+.box.active:after {
+    transform: rotate(45deg) scaleY(1);
+}
+</style>
+</head>
+<body>
+<p>实现原理：先用scaleY缩小到看不见，激活的时候，恢复原形，运动曲线：cubic-bezier(.71,-.46,.88,.6)</p>
+<span class="box"></span>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$('.box').click(function() {
+    $(this).toggleClass('active');
+});
+</script>
+</body>
+</html>

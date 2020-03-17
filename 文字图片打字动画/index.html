@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			background: black;
+		}
+		.key {
+			margin: 40px;
+			width: 0px;
+			height: 22px;
+			background: url("key.png") no-repeat;
+			animation: key_bg 1s steps(5) forwards;
+		}
+
+		@keyframes key_bg {
+			from { width: 0px; }
+
+			to { width: 99px; }
+		}
+	</style>
+</head>
+<body>
+	<div class="key"></div>
+</body>
+</html>
